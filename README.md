@@ -7,7 +7,7 @@ All code from wikipedia pseudocode, i.e. "https://en.wikipedia.org/wiki/Quicksor
 Issues: 
 
 1. dutch_flag_sort is not working. Will figure out later.
-2. Implement burst_sort, tim_sort, ska_sort, msd_radix_sort, pdquicksort, smooth_sort, spread_sort, flash_sort, splay_sort
+2. Implement burst_sort, tim_sort, ska_sort, msd_radix_sort, pdquicksort, bitonic_sort, smooth_sort, spread_sort, flash_sort, splay_sort
 3. Setup tests (nothing is configured with tests, only manual inspection in main)
 
 Eventually, I might make it a lib, but def no rush on that. Hundreds of better sorts out there. Mostly here for other to see and provide feedback. I may also try to optimize when I get time. 
