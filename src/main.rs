@@ -34,7 +34,7 @@ fn main() {
     let mut non: Vec<i32> = vec![1,2,3,4,3,31,2,4,3,2,6,45,4,4,4,3];
     // non.iter().map(|x| x.count());
     let mut f = vec![4.3434, 23.32323, 99.3243, 0.84728934, 00.78787, 0.0];
-    let mut k = vec!["dfsdfi", "gdfgdfga", "ayrtrtr", "fsdd", "fdsfsdf", "dghfgd8787dfjskdfg", "5345345ghjsdfg", "\t"];
+    let mut k = vec!["dfsdfi", "gdfgdfga", "ayrtrtr", "fsdd", "fdsfsdf", "dghfgd8787dfjskdfg", "5345345ghjsdfg", "\tkk"];
     merge_sort::merge_sort(&mut k);
     for x in k.iter() {
         print!("{} \n", x)
