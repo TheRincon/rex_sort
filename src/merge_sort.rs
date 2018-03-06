@@ -1,75 +1,36 @@
 use std::cmp::Ord;
 use std::cmp::min;
 
-fn top_down_split_merge<T>(b: &mut [T], beg: usize, end: usize, a: &mut [T]) where T: PartialOrd + Clone {
-    if end - beg < 2 {
-        return
-    }
-    let mid = (end + beg) / 2;
-    top_down_split_merge(b, beg, mid, a);
-    top_down_split_merge(b, mid + 1, end, a);
-
-    top_down_merge(a, b, beg, mid, end);
-
-}
-
-fn top_down_merge<T>(a: &mut [T], b: &mut [T], l: usize, r: usize, e: usize) where T: PartialOrd + Clone {
-
-    let mut i = l;
-    let mut j = r;
-    for k in l..e {
-        if i < r && (j >= e || a[i] <= a[j]) {
-            b[k] = a[i].clone();
-            i += 1;
+pub fn merge2<T>(a: &mut [T], b: &mut [T], start: usize, mid: usize, end: usize) where T: PartialOrd + Clone {
+    let mut one = start;
+    let mut two = mid;
+    for i in start..end {
+        if (one < mid) && (two >= end || a[one] <= a[two]) {
+            b[i] = a[one].clone();
+            one += 1;
         } else {
-            b[i] = a[j].clone();
-            j += 1;
+            b[i] = a[two].clone();
+            two += 1;
         }
     }
 }
 
-pub fn merge_sort2<T>(a: &mut [T])  where T: PartialOrd + Clone {
-
-    let size = a.len();
-    let mut b: Vec<T> = Vec::with_capacity(size);
-    unsafe { b.set_len(size); }
-    copy_vec2(a, &mut b, 0, size);
-    top_down_split_merge(&mut b, 0, size, a);
+pub fn copy_vec<T>(a: &mut [T], b: &mut [T], start: usize, end: usize) where T: PartialOrd + Clone {
+    for i in start..end { a[i] = b[i].clone() }
 }
 
-fn copy_vec2<T>(a: &mut [T], b: &mut [T], c: usize, d: usize) where T: PartialOrd + Clone {
-    for i in c..d {
-        b[i] = a[i].clone();
-    }
-}
-
-
-
-pub fn bottom_Up_merge_sort<T>(a: &mut [T], b: &mut [T]) where T: PartialOrd + Clone {
-    let mut width: usize = 1;
-    let mut i: usize = 0;
-    let n = a.len();
-    while width < n {
-        while i < n {
-            bottom_up_merge(a, b, i, min(i+width, n), min(i+2*width, n));
-            i = i + (2 * width);
-        }
-        copy_vec2(a, b, 0, n);
-        width = 2 * width;
-    }
-}
-
-fn bottom_up_merge<T>(a: &mut [T], b: &mut [T], i: usize , j: usize, k: usize) where T: PartialOrd + Clone {
-    let mut left = i;
-    let mut right = j;
-    for m in i..k {
-        if left < j && (right >= k || (a[left] <= a[right])) {
-            b[m] = a[left].clone();
-            left += 1;
-        } else {
-            b[m] = a[right].clone();
-            right += 1;
-        }
+pub fn merge_split2<T>(a: &mut [T], b: &mut [T], start: usize, end: usize) where T: PartialOrd + Clone {
+    println!("{:?}, {:?}", start, end );
+    let e = end as i64;
+    let s = start as i64;
+    if (e - s) <= 1 {
+        return;
+    } else {
+        let mid = ((e + s) / 2 ) as usize;
+        merge_split2(a, b, start, mid);
+        merge_split2(a, b, mid, end);
+        merge2(a, b, start, mid, end);
+        copy_vec(a, b, start, end);
     }
 }
 
@@ -78,5 +39,66 @@ pub fn merge_sort<T>(a: &mut [T])  where T: PartialOrd + Clone {
     let size = a.len();
     let mut b: Vec<T> = Vec::with_capacity(size);
     unsafe { b.set_len(size); }
-    bottom_Up_merge_sort(a, &mut b);
+    merge_split2(a, &mut b, 0, size);
+}
+
+
+
+
+
+
+
+fn merge(l1: &mut Vec<i32>, s: usize, m: usize, e: usize, l2: &mut Vec<i32>) {
+    let mut ptr1 = s;
+    let mut ptr2 = m;
+
+    for i in s..e {
+        // Continue to compare elements within each sub-list until one sub-list is
+        // exhausted. If a sub-list is exhausted, then the remaing elements in the
+        // other list are copied over assuming they're already in order.
+        if (ptr1 < m) && (ptr2 >= e || l1[ptr1] <= l1[ptr2]) {
+            l2[i] = l1[ptr1];
+            ptr1 += 1;
+        } else {
+            l2[i] = l1[ptr2];
+            ptr2 += 1;
+        }
+    }
+}
+
+/*
+  Copies all elements from a worker mutable list, l2, to a mutable primary
+  list, l1. The index ranges are regarded to represent an ordered sublist
+  within the worker list, l2.
+*/
+fn merge_copy(l1: &mut Vec<i32>, s: usize, e: usize, l2: &mut Vec<i32>) {
+    for i in s..e { l1[i] = l2[i]; }
+}
+
+/*
+  Splits a mutable list into two sub-lists. The split is done recursively until
+  only n sub-lists remain where n is the total number of elements in the
+  original list. These sub-lists are then merged together keeping order.
+*/
+fn merge_split(l1: &mut Vec<i32>, s: usize, e: usize, l2: &mut Vec<i32>) {
+    if (e - s) <= 1 {
+        return;
+    } else {
+        let m: usize = (e + s) / 2;
+
+        merge_split(l1, s, m, l2);
+        merge_split(l1, m, e, l2);
+        merge(l1, s, m, e, l2);
+        merge_copy(l1, s, e, l2);
+    }
+}
+
+/*
+  Performs merge sort on a mutable vector of i32 elements.
+*/
+pub fn sort(l1: &mut Vec<i32>) {
+    let size: usize          = l1.len();
+    let mut worker: Vec<i32> = vec![0; size];
+
+    merge_split(l1, 0, size, &mut worker);
 }
