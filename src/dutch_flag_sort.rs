@@ -1,4 +1,4 @@
-use std::ops::{Add, Sub};
+/* use std::ops::{Add, Sub};
 use std::cmp::PartialOrd;
 
 extern crate rand;
@@ -27,9 +27,11 @@ fn dutch_flag_partition<T>(a: &mut [T], mid: usize) -> (usize, usize)  where T: 
 
 pub fn dutch_flag_sort<T>(a: &mut [T]) where T: Ord {
     let d: usize = a.len() / 3;
-    println!("{:?}",d);
     if a.len() <= 1 {
         return
+    }
+    if d <= 1 {
+        return;
     }
     let (i, j) = dutch_flag_partition(a, d);
     dutch_flag_sort(&mut a[0..i]);
@@ -37,3 +39,14 @@ pub fn dutch_flag_sort<T>(a: &mut [T]) where T: Ord {
     dutch_flag_sort(&mut a[j..]);
 }
 
+#[cfg(test)]
+mod tests {
+    use super::*;
+    #[test]
+    fn tester() {
+        let mut t = vec ! [2, 4, 3, 1];
+        assert_eq ! ([1, 2, 3, 4], dutch_flag_sort(t));
+    }
+}
+
+*/

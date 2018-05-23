@@ -1,5 +1,4 @@
-use std::ops::{Add, Sub};
-use std::cmp::{PartialOrd, PartialEq};
+use std::cmp::PartialOrd;
 
 /* pub fn bitonic_sort<T: Add>(a: &mut [T]) -> &mut [T] where T: Copy + Add<Output = T> + Sub<Output = T> + PartialOrd {
     let n = a.len();

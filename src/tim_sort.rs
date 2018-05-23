@@ -1,6 +1,5 @@
-/* use std::mem;
-
-fn timsort<T>(data: [T], idx: T, &mut start: T, nel: T) where T: Copy + Add<Output = T> + Sub<Output = T> + PartialOrd {
+/*
+fn timsort<T>(data: [T], idx: T, &mut start: T, nel: T) where T: Copy + PartialOrd {
     if start == 0 {
         start += 1;
     }

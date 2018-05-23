@@ -1,7 +1,6 @@
-use std::ops::{Add, Sub};
 use std::cmp::PartialOrd;
 
-pub fn radix_sort<T: Ord>(a: &mut [T]) {
+pub fn radix_sort<T: Ord>(a: &mut [T]) where T: PartialOrd {
     if a.len() < 1000 {
         let base = 10;
     } else { let base = 1000; }

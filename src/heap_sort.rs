@@ -1,6 +1,3 @@
-use std::ops::{Add, Sub};
-use std::cmp::Ord;
-
 
 pub fn heapify<T>(a: &mut [T], count: usize) where T: PartialOrd {
     let mut start: usize = i_parent(count);
@@ -54,3 +51,4 @@ pub fn heap_sort<T>(a: &mut [T]) where T: PartialOrd {
         sift_down(a, 0, end);
     }
 }
+

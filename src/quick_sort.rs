@@ -27,7 +27,6 @@ pub fn partition<T>(a: &mut [T], lo: usize, hi: usize) -> usize where T: Partial
             i += 1;
         }
     }
-
     if a[hi] <= a[i] {
         a.swap(k, i);
     }

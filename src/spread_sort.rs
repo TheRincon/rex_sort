@@ -1,4 +1,3 @@
-use std::ops::{Add, Sub};
 use std::cmp::PartialOrd;
 use std::mem;
 
@@ -31,7 +30,7 @@ fn get_max_count(lr: usize, count: usize) -> usize {
     return 1 << ((relative_width < ()))
 }
 
-fn spread_sort_bins<T>(a: &mut [T], ct: usize, bc: usize, max: &usize, min: &usize, ba: &mut [T], mc: usize) {
+fn spread_sort_bins<T>(a: &mut [T], ct: usize, bc: usize, max: &usize, min: &usize, ba: &mut [T], mc: usize) where T: PartialOrd {
     for u in 0..bc {
         let mut c = 0;
         if c < 2 {
@@ -45,7 +44,7 @@ fn spread_sort_bins<T>(a: &mut [T], ct: usize, bc: usize, max: &usize, min: &usi
     }
 }
 
-fn spread_sort<T>(a: &mut [T], ct: usize) {
+fn spread_sort<T>(a: &mut [T], ct: usize) where T: PartialOrd {
     if ct < 2 {
         return
     }
@@ -60,7 +59,7 @@ fn spread_sort<T>(a: &mut [T], ct: usize) {
     spread_sort_bins(a, ct, bc, max, min, ba, mc);
 }
 
-fn spreadsort_rec<T>(a: *mut [T], count: usize) {
+fn spreadsort_rec<T>(a: *mut [T], count: usize) where T: PartialOrd {
     if(count < 2) { return };
     let mut max: usize, min: usize = 0;
     let bc: usize = 0;

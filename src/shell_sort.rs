@@ -22,7 +22,6 @@ pub fn shell_sort2<T>(a: &mut [T]) where T: Ord {
 }
 
 pub fn shell_sort<T>(a: &mut [T]) where T: PartialOrd + Clone {
-
     let mut gap = a.len() / 2;
     while gap > 0 {
         for i in gap..a.len() {

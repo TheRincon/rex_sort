@@ -1,5 +1,3 @@
-use std::mem;
-use std::ops::{Add, Sub};
 use std::cmp::PartialOrd;
 
 pub fn bubble_sort<T>(a: & mut [T]) where T: PartialOrd {

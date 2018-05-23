@@ -1,4 +1,3 @@
-use std::ops::{Add, Sub};
 use std::cmp::PartialOrd;
 
 pub fn selection_sort<T>(a: &mut [T]) where T: PartialOrd {
@@ -10,7 +9,6 @@ pub fn selection_sort<T>(a: &mut [T]) where T: PartialOrd {
                 min = i;
             }
         }
-
         if min != j {
             a.swap(j, min);
         }

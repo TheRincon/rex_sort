@@ -38,6 +38,6 @@ mod tests {
     #[test]
     fn tester() {
         let mut t = vec ! [2, 4, 3, 1];
-        assert_eq ! ([1, 2, 3, 4], cocktail_sort(t));
+        assert_eq ! ([1, 2, 3, 4], cocktail_sort(&mut t));
     }
 }

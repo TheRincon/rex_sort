@@ -1,4 +1,3 @@
-use std::ops::{Add, Sub};
 use std::cmp::Ord;
 
 use heap_sort;

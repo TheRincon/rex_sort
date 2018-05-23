@@ -9,7 +9,6 @@ pub fn odd_even_sort<T>(a: &mut [T]) where T: PartialOrd {
             while j < n {
                 if a[j] < a[j - 1] {
                     a.swap(j - 1, j);
-
                 }
                 j += 2;
             }
@@ -18,7 +17,6 @@ pub fn odd_even_sort<T>(a: &mut [T]) where T: PartialOrd {
             while k < n {
                 if a[k] < a[k-1] {
                     a.swap(k - 1, k);
-
                 }
                 k += 2;
             }
