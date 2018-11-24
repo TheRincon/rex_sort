@@ -37,7 +37,7 @@ mod tests {
     use super::*;
     #[test]
     fn tester() {
-        let mut t = vec ! [2, 4, 3, 1];
-        assert_eq ! ([1, 2, 3, 4], cocktail_sort(&mut t));
+        let mut t = vec ! [2, 4, 3, 1, 5, 7, 6, 8];
+        assert_eq ! ([1, 2, 3, 4, 5, 6, 7, 8], cocktail_sort(&mut t));
     }
 }
