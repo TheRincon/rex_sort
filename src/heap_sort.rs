@@ -7,27 +7,6 @@ pub fn heapify<T>(a: &mut [T], count: usize) where T: PartialOrd {
     }
 }
 
-pub fn heapify_up<T>(a: &mut [T], count: usize) where T: PartialOrd {
-    let mut end = 1;
-    while end < count {
-        sift_up(a, 0, end);
-        end += 1;
-    }
-}
-
-pub fn sift_up<T>(a: & mut [T], start: usize, end: usize) where T: PartialOrd {
-    let mut child = end;
-    while child > start {
-        let mut parent = i_parent(child);
-        if a[parent] < a[child] {
-            a.swap(parent, child);
-            child = parent;
-        } else {
-            return
-        }
-    }
-}
-
 fn i_child_left(i: usize) -> usize {
     2 * i + 1
 }
@@ -65,9 +44,9 @@ pub fn heap_sort<T>(a: &mut [T]) where T: PartialOrd {
     for start in (0..end / 2).rev() {
         sift_down(a, start, end - 1);
     }
-    for i in (1..a.len()).rev() {
-        a.swap(i, 0);
-        sift_down(a, 0, i - 1);
+    for item in (1..a.len()).rev() {
+        a.swap(item, 0);
+        sift_down(a, 0, item - 1);
     }
 }
 
@@ -79,42 +58,42 @@ mod test_heap {
     fn test_heap_int() {
         let mut int_vec = vec![2, 4, 3, 1, 5, 7, 6, 8];
         heap_sort(&mut int_vec);
-        assert_eq!(vec![1, 2, 3, 4, 5, 6, 7, 8], int_vec);
+        assert_eq!(int_vec, vec![1, 2, 3, 4, 5, 6, 7, 8]);
     }
 
     #[test]
     fn test_heap_usize() {
         let mut usize_vec: Vec<usize> = vec![2, 4, 3, 1, 5, 7, 6, 8, 88238];
         heap_sort(&mut usize_vec);
-        assert_eq!(vec![1, 2, 3, 4, 5, 6, 7, 8, 88238], usize_vec);
+        assert_eq!(usize_vec, vec![1, 2, 3, 4, 5, 6, 7, 8, 88238]);
     }
 
     #[test]
     fn test_heap_very_large() {
         let mut large_vec:  Vec<i64> = vec![28467298374870234, 4462896788749623746, 3, 1, 5, 7, 6, 8, 846287687263478238];
         heap_sort(&mut large_vec);
-        assert_eq!(vec![1, 3, 5, 6, 7, 8, 28467298374870234, 846287687263478238, 4462896788749623746], large_vec);
+        assert_eq!(large_vec, vec![1, 3, 5, 6, 7, 8, 28467298374870234, 846287687263478238, 4462896788749623746]);
     }
 
     #[test]
     fn test_heap_very_small() {
         let mut small_vec:  Vec<f64> = vec![0.28467298374870234, -4462896788749623746.0, 0.0000000000000003, 1.0, 5.4234, 0.07, 6.993423, 0.0000367468, 846287687263478238.0];
         heap_sort(&mut small_vec);
-        assert_eq!(vec![-4462896788749624000.0, 0.0000000000000003, 0.0000367468, 0.07, 0.2846729837487023, 1.0, 5.4234, 6.993423, 846287687263478300.0], small_vec);
+        assert_eq!(small_vec, vec![-4462896788749624000.0, 0.0000000000000003, 0.0000367468, 0.07, 0.2846729837487023, 1.0, 5.4234, 6.993423, 846287687263478300.0]);
     }
 
     #[test]
     fn test_heap_float() {
         let mut float_vec = vec![2.0, 4.0, 3.0, 1.0, 5.0, 7.0, 6.0, 8.0, 0.0];
         heap_sort(&mut float_vec);
-        assert_eq!(vec![0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0], float_vec);
+        assert_eq!(float_vec, vec![0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0]);
     }
 
     #[test]
     fn test_heap_string() {
         let mut string_vec = vec!["Help", "'Twas the night B4 Xmas", "fbajsb", "99999", "!@#!$@!783479823", "/??<.,.sd", ""];
         heap_sort(&mut string_vec);
-        assert_eq!(vec!["", "!@#!$@!783479823", "'Twas the night B4 Xmas", "/??<.,.sd", "99999", "Help", "fbajsb"], string_vec);
+        assert_eq!(string_vec, vec!["", "!@#!$@!783479823", "'Twas the night B4 Xmas", "/??<.,.sd", "99999", "Help", "fbajsb"]);
     }
 }
 

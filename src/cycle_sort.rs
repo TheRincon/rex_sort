@@ -58,21 +58,21 @@ mod test_cycle {
     fn test_cycle_int() {
         let mut int_vec = vec![2, 4, 3, 1, 5, 7, 6, 8];
         cycle_sort(&mut int_vec);
-        assert_eq!(vec![1, 2, 3, 4, 5, 6, 7, 8], int_vec);
+        assert_eq!(int_vec, vec![1, 2, 3, 4, 5, 6, 7, 8]);
     }
 
     #[test]
     fn test_cycle_usize() {
         let mut usize_vec: Vec<usize> = vec![2, 4, 3, 1, 5, 7, 6, 8, 88238];
         cycle_sort(&mut usize_vec);
-        assert_eq!(vec![1, 2, 3, 4, 5, 6, 7, 8, 88238], usize_vec);
+        assert_eq!(usize_vec, vec![1, 2, 3, 4, 5, 6, 7, 8, 88238]);
     }
 
     #[test]
     fn test_cycle_very_large() {
         let mut large_vec:  Vec<i64> = vec![28467298374870234, 4462896788749623746, 3, 1, 5, 7, 6, 8, 846287687263478238];
         cycle_sort(&mut large_vec);
-        assert_eq!(vec![1, 3, 5, 6, 7, 8, 28467298374870234, 846287687263478238, 4462896788749623746], large_vec);
+        assert_eq!(large_vec, vec![1, 3, 5, 6, 7, 8, 28467298374870234, 846287687263478238, 4462896788749623746]);
     }
 
     #[test]
