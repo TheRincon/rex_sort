@@ -3,7 +3,7 @@ use std::ops::{Add, Sub};
 use std::cmp::Ord;
 
 pub fn quick_sort<T>(a: &mut [T]) where T: PartialOrd {
-    let hi = a.len()-1;
+    let hi = a.len() - 1;
     quick_sort_real(a, 0, hi);
 }
 
@@ -13,7 +13,9 @@ fn quick_sort_real<T>(a: &mut [T], lo: usize, hi: usize) where T: PartialOrd {
         // u32 triggers a panic when p == 0, i.e. 0usize - 1; this modification stops it.
         if p == 0 {
             quick_sort_real(a, lo, p);
-        } else { quick_sort_real(a, lo, p - 1); }
+        } else {
+            quick_sort_real(a, lo, p - 1);
+        }
         quick_sort_real(a, p + 1, hi);
     }
 }
@@ -77,5 +79,12 @@ mod test_quick {
         let mut string_vec = vec!["Help", "'Twas the night B4 Xmas", "fbajsb", "99999", "!@#!$@!783479823", "/??<.,.sd", ""];
         quick_sort(&mut string_vec);
         assert_eq!(string_vec, vec!["", "!@#!$@!783479823", "'Twas the night B4 Xmas", "/??<.,.sd", "99999", "Help", "fbajsb"]);
+    }
+
+    #[test]
+    fn test_quick_many_ints() {
+        let mut int_vec = vec![2, 4, 3, 9, 1, 5, 7, 6, 8, 0, 11, 12, 14, 19, 18, 67, 90, 743, 43, 12, 1100, 6464, 1, 3, 4, 5, 6, 9, 1, 3, 2, 77];
+        quick_sort(&mut int_vec);
+        assert_eq!(int_vec, vec![0, 1, 1, 1, 2, 2, 3, 3, 3, 4, 4, 5, 5, 6, 6, 7, 8, 9, 9, 11, 12, 12, 14, 18, 19, 43, 67, 77, 90, 743, 1100, 6464]);
     }
 }

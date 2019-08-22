@@ -3,6 +3,12 @@ use std::mem;
 
 use merge_sort;
 
+struct Bin<'a, T> {
+    array: &'a mut[T],
+    index: &'a mut i32,
+    length: &'a mut i32,
+}
+
 fn spread_sort_core<T>(a: &mut [T], ct: usize, bc: usize, max: &usize, min: &usize) where T: PartialOrd {
 
 }
@@ -66,7 +72,7 @@ fn spread_sort_bins<T>(a: &mut [T], ct: usize, bc: usize, max: &usize, min: &usi
         if c < mc {
             merge_sort::merge_sort(a);
         } else {
-            spread_sort(a, ct);
+            spread_sort(a);
         }
     }
 }
@@ -87,8 +93,11 @@ pub fn spread_sort<T>(a: &mut [T]) where T: PartialOrd {
 }
 
 fn spreadsort_rec<T>(a: *mut [T]) where T: PartialOrd {
-    if(count < 2) { return };
+
     let count: usize = a.len();
+    if(count < 2) {
+        return;
+    }
     let mut max: usize = 0;
     let mut min: usize = 0;
     let bc: usize = 0;
