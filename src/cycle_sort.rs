@@ -1,5 +1,3 @@
-use std::cmp::PartialOrd;
-
 // Possible improvement.
 
 // When the array contains only duplicates of a relatively small number of items,

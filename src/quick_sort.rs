@@ -1,6 +1,3 @@
-use std::mem;
-use std::ops::{Add, Sub};
-use std::cmp::Ord;
 
 pub fn quick_sort<T>(a: &mut [T]) where T: PartialOrd {
     let hi = a.len() - 1;

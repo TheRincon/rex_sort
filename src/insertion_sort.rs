@@ -1,4 +1,3 @@
-use std::cmp::PartialOrd;
 
 pub fn recursive_insertion_sort<T>(a: & mut [T], n: usize) where T: PartialOrd {
     if n > 0 {

@@ -1,4 +1,3 @@
-use std::cmp::Ord;
 
 struct Node {
 

@@ -1,5 +1,3 @@
-use std::cmp::Ord;
-
 use heap_sort;
 use quick_sort;
 

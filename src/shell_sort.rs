@@ -1,6 +1,8 @@
 use std::cmp::Ord;
 use quick_sort;
 
+// another unused variant
+// useful for only under 900 elements, because of gap bands, also needs Ord afaik
 pub fn shell_sort2<T>(a: &mut [T]) where T: Ord {
     if a.len() > 900 {
         let gaps: Vec<usize> = vec![701, 301, 132, 57, 23, 10, 4, 1];
@@ -8,8 +10,8 @@ pub fn shell_sort2<T>(a: &mut [T]) where T: Ord {
             for i in *gap..a.len() {
                 let tmp = i;
                 let mut j = i;
-                while (j > *gap - 1) && (a[j - gap] >= a[i]) {
-                    a.swap(j, j - gap);
+                while (j > *gap - 1) && (a[j - *gap] >= a[i]) {
+                    a.swap(j, j - *gap);
                     j -= *gap;
                 }
                 a.swap(j, tmp);

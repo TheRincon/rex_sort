@@ -1,4 +1,3 @@
-use std::cmp::Ord;
 
 pub fn comb_sort<T>(a: &mut [T])  where T: PartialOrd {
     let mut n = a.len();

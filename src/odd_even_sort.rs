@@ -1,5 +1,3 @@
-use std::ops::{Add, Sub};
-use std::cmp::PartialOrd;
 
 pub fn odd_even_sort<T>(a: &mut [T]) where T: PartialOrd {
     let n = a.len();

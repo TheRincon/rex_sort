@@ -2,7 +2,7 @@ pub fn cocktail_sort<T>(a: &mut [T]) where T: PartialOrd {
     let mut sorted: bool = false;
     let mut first: usize = 0;
     let mut last: usize = a.len() - 1;
-    while !sorted {
+    while  !sorted {
         let mut changed: bool = false;
         for i in 0..(a.len() - 1) {
             if a[i] > a[i + 1] {

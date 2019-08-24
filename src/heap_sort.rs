@@ -1,7 +1,8 @@
 
 pub fn heapify<T>(a: &mut [T], count: usize) where T: PartialOrd {
     let mut start: usize = i_parent(count - 1);
-    while start >= 0 {
+    loop {
+        if start == 0 { return; }
         sift_down(a, start, count - 1);
         start -= 1;
     }

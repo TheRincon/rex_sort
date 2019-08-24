@@ -1,4 +1,3 @@
-use std::cmp::PartialOrd;
 
 pub fn selection_sort<T>(a: &mut [T]) where T: PartialOrd {
     let n = a.len();

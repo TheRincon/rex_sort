@@ -1,5 +1,3 @@
-use std::cmp::Ord;
-use std::cmp::min;
 
 pub fn merge<T>(a: &mut [T], b: &mut [T], start: usize, mid: usize, end: usize) where T: PartialOrd + Clone {
     let mut one = start;

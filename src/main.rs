@@ -16,6 +16,7 @@ mod cycle_sort;
 mod bitonic_sort;
 mod cocktail_sort;
 mod flash_sort2;
+mod spread_sort;
 
 
 fn main() {
